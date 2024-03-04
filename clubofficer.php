@@ -228,7 +228,7 @@ include("db.php");
                         echo "</table>";
 
                         // Add Clubs Button
-                        echo '<button class="add-officer-btn" onclick="location.href=\'add_officers.php\';">Add officer</button>';
+                        echo '<button class="add-officer-btn" onclick="location.href=\'add_officer.php\';">Add officer</button>';
                     } else {
                         echo '<tr><td colspan="5" style="text-align: center;">No data available</td></tr>';
                     }
