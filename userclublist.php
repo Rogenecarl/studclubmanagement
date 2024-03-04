@@ -66,16 +66,6 @@ include("db.php");
             background-color: #cce5ff;
         }
 
-        .add-clubs-btn {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
     </style>
 </head>
 
@@ -115,9 +105,9 @@ include("db.php");
                 </a>
             </li>
             <li >
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                <a href="login.php" class="login">
+                    <i class='bx bxs-log-in-circle'></i>
+                    <span class="text">Log in</span>
                 </a>
             </li>
         </ul>
@@ -150,26 +140,11 @@ include("db.php");
                         <th>Club Logo</th>
                         <th>Club Name</th>
                         <th>Status</th>
+                        <th>Apply Club</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteClub'])) {
-                        $clubID = $_POST['clubID'];
-
-                        $checkQuery = "SELECT * FROM clubofficers WHERE ClubID = $clubID";
-                        $checkResult = mysqli_query($conn, $checkQuery);
-
-                        if (mysqli_num_rows($checkResult) > 0) {
-                            
-                            $deleteOfficersQuery = "DELETE FROM clubofficers WHERE ClubID = $clubID";
-                            mysqli_query($conn, $deleteOfficersQuery);
-                        }
-
-                
-                        $deleteQuery = "DELETE FROM clubs WHERE ClubID = $clubID";
-                        mysqli_query($conn, $deleteQuery);
-                    }
 
                     $query = "SELECT * FROM clubs";
                     $result = mysqli_query($conn, $query);
@@ -189,13 +164,20 @@ include("db.php");
                                         </select>
                                     </div>
                                 </td>
+                                <td>
+                                    <form method="post" action="apply.php" style="display: inline;">
+                                        <input type="hidden" name="clubID" value="' . $row['ClubID'] . '">
+                                        <button class="btn btn-success btn-sm" type="submit" name="applyClub">
+                                            <i class="glyphicon glyphicon-ok"></i> Apply
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>';
                         }
-
+                    
                         echo "</table>";
 
                         // Add Clubs Button
-                        echo '<button class="add-clubs-btn" onclick="location.href=\'add_clubs.php\';">Add Clubs</button>';
                     } else {
                         echo "No clubs found.";
                     }

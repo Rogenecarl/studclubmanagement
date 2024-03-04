@@ -135,9 +135,9 @@ include("db.php");
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                <a href="log.php" class="login">
+                    <i class='bx bxs-log-in-circle'></i>
+                    <span class="text">Log in</span>
                 </a>
             </li>
         </ul>
@@ -172,7 +172,6 @@ include("db.php");
                         <th>Student ID</th>
                         <th>Position</th>
                         <th>Student Name</th>
-                     <!-- New column for Edit and Delete buttons -->
                     </tr>
                 </thead>
                 <tbody id="tbody">

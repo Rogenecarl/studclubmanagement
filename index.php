@@ -83,11 +83,13 @@ include("db.php");
 
     <!-- SIDEBAR -->
     <section id="sidebar">
-        <a href="#" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">Club Management</span>
-        </a>
         <ul class="side-menu top">
+        <li>
+                <a href="index.php" class="brand">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Club managemnt</span>
+                </a>
+            </li>
             <li>
                 <a href="index.php">
                     <i class='bx bxs-dashboard'></i>
@@ -107,7 +109,7 @@ include("db.php");
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="memreq.php">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Member Request</span>
                 </a>
@@ -121,7 +123,7 @@ include("db.php");
                 </a>
             </li>
             <li >
-                <a href="#" class="logout">
+                <a href="userclublist.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
                 </a>

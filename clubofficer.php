@@ -127,7 +127,7 @@ include("db.php");
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="memreq.php">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Member Request</span>
                 </a>
@@ -141,7 +141,7 @@ include("db.php");
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
+                <a href="userclublist.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
                 </a>
