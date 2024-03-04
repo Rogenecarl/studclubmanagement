@@ -11,7 +11,7 @@ include("db.php");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dash.css">
     <title>Student Club Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
@@ -23,7 +23,7 @@ include("db.php");
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f8f8;
+            background-color: #808080;
             font-family: 'Arial', sans-serif;
         }
 
@@ -41,40 +41,47 @@ include("db.php");
         }
 
         #exampleTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-        #exampleTable th,
-        #exampleTable td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-        }
+    #exampleTable th,
+    #exampleTable td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 2px solid #ddd;
+        font-family: 'Arial', sans-serif; /* Set the desired font family */
+    }
 
-        #exampleTable th {
-            background-color: #3498db; /* Header background color */
-            color: white;
-        }
+    #exampleTable th {
+        background-color: #3498db;
+        color: white;
+    }
 
-        #exampleTable tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
-        }
+    #exampleTable tbody tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
 
-        #exampleTable tbody tr:hover {
-            background-color: #cce5ff;
-        }
+    #exampleTable tbody tr:hover {
+        background-color: #cce5ff;
+    }
 
-        .add-clubs-btn {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+    .add-clubs-btn {
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-family: 'Arial', sans-serif; /* Set the desired font family */
+    }
+
+    /* Add border-bottom to the table */
+    #exampleTable th, #exampleTable td {
+        border-bottom: 0.5px solid #808080;
+    }
 
     </style>
 </head>
@@ -83,13 +90,11 @@ include("db.php");
 
     <!-- SIDEBAR -->
     <section id="sidebar">
+        <a class="brand">
+            <i class='bx bxs-dashboard'></i>
+            <span class="text">Club Management</span>
+        </a>
         <ul class="side-menu top">
-        <li>
-                <a href="index.php" class="brand">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Club managemnt</span>
-                </a>
-            </li>
             <li>
                 <a href="index.php">
                     <i class='bx bxs-dashboard'></i>
@@ -122,7 +127,7 @@ include("db.php");
                     <span class="text">Settings</span>
                 </a>
             </li>
-            <li >
+            <li>
                 <a href="userclublist.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
@@ -190,14 +195,7 @@ include("db.php");
                                     <img src="' . $row["ClubLogo"] . '" alt="Club Logo" style="max-width: 50px; max-height: 50px;">
                                 </td>
                                 <td>' . $row["ClubName"] . '</td>
-                                <td>
-                                    <div class="custom-dropdown">
-                                        <select name="status">
-                                            <option value="0" ' . ($row["Status"] == 0 ? "selected" : "") . '>Not Accredited</option>
-                                            <option value="1" ' . ($row["Status"] == 1 ? "selected" : "") . '>Accredited</option>
-                                        </select>
-                                    </div>
-                                </td>
+                                <td>' . $row["Status"] . '</td>
                                 <td>
                                     <form method="post" action="edit_club.php" style="display: inline;">
                                         <input type="hidden" name="clubID" value="' . $row['ClubID'] . '">

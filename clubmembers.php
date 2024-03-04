@@ -11,7 +11,7 @@ include("db.php");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dash.css">
     <title>Student Club Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
@@ -76,6 +76,10 @@ include("db.php");
             cursor: pointer;
             margin-top: 20px;
         }
+
+        #exampleTable th, #exampleTable td {
+        border-bottom: 0.5px solid #808080;
+    }
 
     </style>
 </head>

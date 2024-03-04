@@ -11,7 +11,7 @@ include("db.php");
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="userdash.css">
     <title>Student Club Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
@@ -144,35 +144,36 @@ include("db.php");
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+                <?php
+        $query = "SELECT * FROM clubs";
+        $result = mysqli_query($conn, $query);
 
-                    $query = "SELECT * FROM clubs";
-                    $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<tr>
+                    <td>
+                        <img src="' . $row["ClubLogo"] . '" alt="Club Logo" style="max-width: 50px; max-height: 50px;">
+                    </td>
+                    <td>' . $row["ClubName"] . '</td>
+                    <td>' . $row["Status"] . '</td>
+                    <td>';
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<tr>
-                                <td>
-                                    <img src="' . $row["ClubLogo"] . '" alt="Club Logo" style="max-width: 50px; max-height: 50px;">
-                                </td>
-                                <td>' . $row["ClubName"] . '</td>
-                                <td>
-                                    <div class="custom-dropdown">
-                                        <select name="status">
-                                            <option value="0" ' . ($row["Status"] == 0 ? "selected" : "") . '>Not Accredited</option>
-                                            <option value="1" ' . ($row["Status"] == 1 ? "selected" : "") . '>Accredited</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <form method="post" action="apply.php" style="display: inline;">
-                                        <input type="hidden" name="clubID" value="' . $row['ClubID'] . '">
-                                        <button class="btn btn-success btn-sm" type="submit" name="applyClub">
-                                            <i class="glyphicon glyphicon-ok"></i> Apply
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>';
+                // Check if the club is accredited
+                if ($row["Status"] == "Not Accredited") {
+                    echo '<button class="btn btn-success btn-sm" disabled>
+                        <i class="glyphicon glyphicon-ok"></i> Not avialable
+                    </button>';
+                } else {
+                    echo '<form method="post" action="apply.php" style="display: inline;">
+                            <input type="hidden" name="clubID" value="' . $row['ClubID'] . '">
+                            <button class="btn btn-success btn-sm" type="submit" name="applyClub">
+                                <i class="glyphicon glyphicon-ok"></i> Apply
+                            </button>
+                        </form>';
+                }
+
+                echo '</td>
+                    </tr>';
                         }
                     
                         echo "</table>";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2024 at 12:23 PM
+-- Generation Time: Mar 04, 2024 at 03:33 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `universityofunknown`
+-- Database: `studclubmanagement`
 --
 
 -- --------------------------------------------------------
@@ -30,19 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `clubmembers` (
   `ClubID` int(11) NOT NULL,
   `StudentID` int(11) NOT NULL,
-  `StudentName` varchar(200) NOT NULL
+  `StudentName` varchar(200) NOT NULL,
+  `Status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `clubmembers`
 --
 
-INSERT INTO `clubmembers` (`ClubID`, `StudentID`, `StudentName`) VALUES
-(2, 234, 'sdsdasd'),
-(3, 123, 'ewer'),
-(3, 2334, 'ssdfsfd'),
-(11, 234, 'sdsdf'),
-(15, 545, 'Alex Thompsonwerw');
+INSERT INTO `clubmembers` (`ClubID`, `StudentID`, `StudentName`, `Status`) VALUES
+(0, 0, '', 0),
+(0, 1111111, 'dfsdfsfsdf', 0),
+(3, 23424, 'hhhhhhh', 2),
+(3, 56783, 'Bajig rosalijos', 2);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,6 @@ CREATE TABLE `clubofficers` (
 --
 
 INSERT INTO `clubofficers` (`ClubID`, `StudentID`, `Position`, `StudentName`) VALUES
-(2, 8, 'President', 'Sophiasddfsdf'),
 (2, 9, 'Vice President', 'Liam Davis'),
 (2, 10, 'Secretary', 'Zoey Adams'),
 (2, 11, 'Treasurer', 'Noah Garcia'),
@@ -89,6 +88,7 @@ CREATE TABLE `clubs` (
 --
 
 INSERT INTO `clubs` (`ClubID`, `ClubLogo`, `ClubName`, `Status`) VALUES
+(0, 'uploads/desktop-wallpaper-minimalist-world-of-warcraft-minimalist.jpg', 'dfgdfh', 1),
 (2, 'uploads/desktop-wallpaper-rimuru-tempest-tensei-shitara-slime-datta-ken-background-slime-anime.jpg', 'Chess Club', 0),
 (3, 'uploads/desktop-wallpaper-minimalist-world-of-warcraft-minimalist.jpg', 'Debate Club', 0),
 (4, '', 'Art Club', 0),
@@ -108,6 +108,26 @@ INSERT INTO `clubs` (`ClubID`, `ClubLogo`, `ClubName`, `Status`) VALUES
 (18, '', 'Photography Club', 0),
 (19, '', 'Volunteer Club', 0),
 (20, '', 'Foreign Language Club', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'admin', 'sabir@gmail.com', '21232f297a57a5a743894a0e4a801fc3');
 
 --
 -- Indexes for dumped tables
@@ -130,6 +150,22 @@ ALTER TABLE `clubofficers`
 --
 ALTER TABLE `clubs`
   ADD PRIMARY KEY (`ClubID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
