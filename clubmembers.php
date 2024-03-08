@@ -22,12 +22,11 @@ include("db.php");
     <link rel="icon" href="https://codingbirdsonline.com/wp-content/uploads/2019/12/cropped-coding-birds-favicon-2-1-192x192.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-
         body {
             background-color: #f8f8f8;
             font-family: 'Arial', sans-serif;
         }
-        
+
         .container {
             margin-top: 20px;
             background-color: #fff;
@@ -38,7 +37,8 @@ include("db.php");
 
         h2 {
             text-align: center;
-            color: #3498db; /* Header color */
+            color: #3498db;
+            /* Header color */
         }
 
         #exampleTable {
@@ -55,7 +55,8 @@ include("db.php");
         }
 
         #exampleTable th {
-            background-color: #3498db; /* Header background color */
+            background-color: #3498db;
+            /* Header background color */
             color: white;
         }
 
@@ -77,10 +78,10 @@ include("db.php");
             margin-top: 20px;
         }
 
-        #exampleTable th, #exampleTable td {
-        border-bottom: 0.5px solid #808080;
-    }
-
+        #exampleTable th,
+        #exampleTable td {
+            border-bottom: 0.5px solid #808080;
+        }
     </style>
 </head>
 
@@ -99,7 +100,7 @@ include("db.php");
                     <span class="text">Club List</span>
                 </a>
             </li>
-            <li>    
+            <li>
                 <a href="clubofficer.php">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Club Officer</span>
@@ -146,77 +147,77 @@ include("db.php");
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
         </nav>
         <!-- NAVBAR -->
 
         <!-- MAIN -->
         <main class="main-content">
-    <div class="container">
-        <h2 style="text-align: center; color: #3498db;">Club Members</h2>
-        <table id="exampleTable" class="table table-striped table-bordered">
-            <thead id="thead">
-                <tr>
-                    <th>Club Logo</th>
-                    <th>Club Name</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Actions</th> <!-- New column for Edit and Delete buttons -->
-                </tr>
-            </thead>
-            <tbody id="tbody">
-                <?php
-                    $sql = "SELECT clubs.ClubName, clubs.ClubLogo, clubmembers.StudentID, clubmembers.StudentName
+            <div class="container">
+                <h2 style="text-align: center; color: #3498db;">Club Members</h2>
+
+                <!-- Add Clubs Button (moved outside the loop) -->
+                <button style="text-align: center;" class="add-clubs-btn" onclick="location.href='addmembers.php';">Add Member</button>
+
+                <table id="exampleTable" class="table table-striped table-bordered">
+                    <thead id="thead">
+                        <tr>
+                            <th>Club Logo</th>
+                            <th>Club Name</th>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <?php
+                        $sql = "SELECT clubs.ClubName, clubs.ClubLogo, clubmembers.StudentID, clubmembers.StudentName
                             FROM clubmembers
                             INNER JOIN clubs ON clubmembers.ClubID = clubs.ClubID";
 
-                    $result = $conn->query($sql);
+                        $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        $prevClubName = '';
-                        while ($row = $result->fetch_assoc()) {
-                            $clubLogoDisplay = $row["ClubLogo"] ? '<img src="' . $row["ClubLogo"] . '" alt="Club Logo" width="50">' : '';
-                            $clubNameDisplay = ($row["ClubName"] !== $prevClubName) ? $row["ClubName"] : '';
-                            $prevClubName = $row["ClubName"];
+                        if ($result->num_rows > 0) {
+                            $prevClubName = '';
+                            while ($row = $result->fetch_assoc()) {
+                                $clubLogoDisplay = $row["ClubLogo"] ? '<img src="' . $row["ClubLogo"] . '" alt="Club Logo" width="50">' : '';
+                                $clubNameDisplay = ($row["ClubName"] !== $prevClubName) ? $row["ClubName"] : '';
+                                $prevClubName = $row["ClubName"];
 
-                            echo '<tr>
-                            <td>' . $clubLogoDisplay . '</td>
-                            <td>' . $clubNameDisplay . '</td>
-                            <td>' . $row["StudentID"] . '</td>
-                            <td>' . $row["StudentName"] . '</td>
-                            <td>
-                                <a href="edit_member.php?StudentID=' . $row["StudentID"] . '" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit </a>
-                                <a href="delete_member.php?StudentID=' . $row["StudentID"] . '" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete </a>
-                            </td>
-                        </tr>';
-                }
-                echo "</table>";
-                    // Add Clubs Button
-                    echo '<button style="text-align: center;" class="add-clubs-btn" onclick="location.href=\'addmembers.php\';">Add Member</button>';
-                    } else {
-                        echo '<tr><td colspan="5" style="text-align: center;">No data available</td></tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <script>
-            $(document).ready(function() {
-                $('#exampleTable').DataTable();
-            });
-        </script>
-    </main>
-    <!-- MAIN -->
+                                echo '<tr>
+                                <td>' . $clubLogoDisplay . '</td>
+                                <td>' . $clubNameDisplay . '</td>
+                                <td>' . $row["StudentID"] . '</td>
+                                <td>' . $row["StudentName"] . '</td>
+                                <td>
+                                    <a href="edit_member.php?StudentID=' . $row["StudentID"] . '" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i> Edit </a>
+                                    <a href="delete_member.php?StudentID=' . $row["StudentID"] . '" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete </a>
+                                </td>
+                            </tr>';
+                            }
+                            echo "</table>";
+                        } else {
+                            echo '<tr><td colspan="5" style="text-align: center;">No data available</td></tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $('#exampleTable').DataTable();
+                });
+            </script>
+        </main>
+        <!-- MAIN -->
 
-    <?php
-    // Close the database connection
-    if (isset($conn)) {
-        mysqli_close($conn);
-    }
-    ?>
+        <?php
+        // Close the database connection
+        if (isset($conn)) {
+            mysqli_close($conn);
+        }
+        ?>
 
-<script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
