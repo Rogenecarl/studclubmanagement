@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 03:33 AM
+-- Generation Time: Mar 08, 2024 at 06:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,8 @@ INSERT INTO `clubmembers` (`ClubID`, `StudentID`, `StudentName`, `Status`) VALUE
 (0, 0, '', 0),
 (0, 1111111, 'dfsdfsfsdf', 0),
 (3, 23424, 'hhhhhhh', 2),
-(3, 56783, 'Bajig rosalijos', 2);
+(3, 56783, 'Bajig rosalijos', 2),
+(14, 234234, 'heheheh', 0);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,9 @@ INSERT INTO `clubofficers` (`ClubID`, `StudentID`, `Position`, `StudentName`) VA
 (3, 15, 'President', 'Benjamin Cooper'),
 (3, 17, 'Secretary', 'Caleb Martinez'),
 (3, 18, 'Treasurer', 'Lily Johnson'),
-(3, 3234, 'Vice President', 'HEhehe');
+(3, 123, 'President', 'Sam'),
+(3, 3234, 'Vice President', 'HEhehe'),
+(3, 12355, 'President', 'hsdfsdfsd');
 
 -- --------------------------------------------------------
 
@@ -80,7 +83,7 @@ CREATE TABLE `clubs` (
   `ClubID` int(11) NOT NULL,
   `ClubLogo` varchar(255) NOT NULL,
   `ClubName` varchar(255) NOT NULL,
-  `Status` tinyint(1) NOT NULL
+  `Status` enum('Accredited','Not Accredited') NOT NULL DEFAULT 'Not Accredited'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -88,26 +91,25 @@ CREATE TABLE `clubs` (
 --
 
 INSERT INTO `clubs` (`ClubID`, `ClubLogo`, `ClubName`, `Status`) VALUES
-(0, 'uploads/desktop-wallpaper-minimalist-world-of-warcraft-minimalist.jpg', 'dfgdfh', 1),
-(2, 'uploads/desktop-wallpaper-rimuru-tempest-tensei-shitara-slime-datta-ken-background-slime-anime.jpg', 'Chess Club', 0),
-(3, 'uploads/desktop-wallpaper-minimalist-world-of-warcraft-minimalist.jpg', 'Debate Club', 0),
-(4, '', 'Art Club', 0),
-(5, '', 'Music Clubb', 0),
-(6, '', 'Drama Club', 0),
-(7, '', 'PGITS Club', 0),
-(8, '', 'GMITS Club', 0),
-(9, '', 'PSITS Club', 0),
-(10, '', 'Robotics Club', 0),
-(11, '', 'Literature Club', 0),
-(12, '', 'Film Club', 0),
-(13, '', 'Math Club', 0),
-(14, '', 'Sports Club', 0),
-(15, '', 'Cooking Club', 0),
-(16, '', 'Astronomy Club', 0),
-(17, '', 'Dance Club', 0),
-(18, '', 'Photography Club', 0),
-(19, '', 'Volunteer Club', 0),
-(20, '', 'Foreign Language Club', 0);
+(2, 'uploads/desktop-wallpaper-rimuru-tempest-tensei-shitara-slime-datta-ken-background-slime-anime.jpg', 'Chess Club', 'Accredited'),
+(3, 'uploads/logout.png', 'Debate Club', 'Not Accredited'),
+(4, 'uploads/signature (2).png', 'Art Club', 'Accredited'),
+(5, '', 'Music Clubb', 'Accredited'),
+(6, '', 'Drama Club', 'Accredited'),
+(7, '', 'PGITS Club', 'Not Accredited'),
+(8, '', 'GMITS Club', 'Not Accredited'),
+(9, '', 'PSITS Club', 'Accredited'),
+(10, '', 'Robotics Club', 'Accredited'),
+(11, '', 'Literature Club', 'Accredited'),
+(12, '', 'Film Club', 'Accredited'),
+(13, '', 'Math Club', 'Not Accredited'),
+(14, '', 'Sports Club', 'Not Accredited'),
+(15, '', 'Cooking Club', 'Not Accredited'),
+(16, '', 'Astronomy Club', 'Not Accredited'),
+(17, '', 'Dance Club', 'Not Accredited'),
+(18, '', 'Photography Club', 'Not Accredited'),
+(19, '', 'Volunteer Club', 'Not Accredited'),
+(20, '', 'Foreign Language Club', 'Not Accredited');
 
 -- --------------------------------------------------------
 
